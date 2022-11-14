@@ -12,6 +12,6 @@ namespace IptProjectWeb.Models
         public string StudentName { get; set; }
         public int QuantityBorrowed { get; set; }
         public string TimeBorrowed { get; set; }
-        public string TimeReturn { get; set; }
+        public string TimeToBeReturned { get; set; }
     }
 }

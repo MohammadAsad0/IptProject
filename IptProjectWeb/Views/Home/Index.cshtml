@@ -69,7 +69,7 @@
                             @Html.DisplayFor(modelItem => item.TimeBorrowed)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TimeReturn)
+                            @Html.DisplayFor(modelItem => item.TimeToBeReturned)
                         </td>
                         <td>
                             <button class="btn btn-primary" asp-controller="Home" asp-action="Returned" asp-route-id="@item.Id">Mark as Returned</button>

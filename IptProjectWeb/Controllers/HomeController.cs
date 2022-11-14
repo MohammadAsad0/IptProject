@@ -15,12 +15,37 @@ namespace IptProjectWeb.Controllers
 
         public IActionResult Index()
         {
+            IEnumerable<BorrowedItem>? items;
 
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
 
-            return View();
+                var responseTask = client.GetAsync("getallborroweditems");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<BorrowedItem>>();
+                    readTask.Wait();
+
+                    items = readTask.Result;
+                }
+                else
+                {
+                    items = Enumerable.Empty<BorrowedItem>();
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact Administrator.");
+                }
+            }
+
+            return View(items);
         }
 
-
+        public IActionResult Returned(string id)
+        {
+            return RedirectToAction("Index");
+        }
 
 
         public IActionResult Privacy()
