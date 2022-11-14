@@ -15,8 +15,13 @@ namespace IptProjectWeb.Controllers
 
         public IActionResult Index()
         {
+
+
             return View();
         }
+
+
+
 
         public IActionResult Privacy()
         {

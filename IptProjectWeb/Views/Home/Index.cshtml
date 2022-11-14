@@ -1,8 +1,86 @@
-﻿@{
+﻿@model IEnumerable<IptProjectWeb.Models.BorrowedItem>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Sports Room</h1>
+
+    <h1>Currently Issued Items</h1>
+@*
+<button class="btn btn-primary">
+    <a asp-action="Create" class="text-white text-decoration-none">Add New Item</a>
+</button>*@
+
+<div class="table-responsive">
+
+    <table class="table table-hover table-striped" style="margin-top: 20px;">
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="10">No Record's found.</td>
+            </tr>
+        }
+        else
+        {
+            <thead>
+                <tr>
+                    <th>
+                        Student Id
+                    </th>
+                    <th>
+                        Student Name
+                    </th>
+                    <th>
+                        Item
+                    </th>
+                    <th>
+                        Quantity Borrowed
+                    </th>
+                    <th>
+                        Time Borrowed
+                    </th>
+                    <th>
+                        Time To Be Returned
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ItemName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuantityBorrowed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeBorrowed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeReturn)
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" asp-controller="Home" asp-action="Returned" asp-route-id="@item.Id">Mark as Returned</button>
+                        </td>
+                    </tr>
+                }
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            </tbody>
+            }
+        </table>
+    </div>
 </div>
