@@ -1,0 +1,58 @@
+﻿@model IptProjectWeb.Models.BorrowedItem
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>BorrowedItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label">Student ID</label>
+                <input asp-for="StudentId" class="form-control" disabled="true"/>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentName" class="control-label">Student Name</label>
+                <input asp-for="StudentName" class="form-control" disabled="true" />
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label">Item Name</label>
+                <input asp-for="ItemName" class="form-control" disabled="true"/>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="QuantityBorrowed" class="control-label">Quantity Issued</label>
+                <input asp-for="QuantityBorrowed" class="form-control" />
+                <span asp-validation-for="QuantityBorrowed" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TimeBorrowed" class="control-label">Time Issued</label>
+                <input asp-for="TimeBorrowed" class="form-control" disabled="true" />
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TimeToBeReturned" class="control-label">Time To Be Returned</label>
+                <input asp-for="TimeToBeReturned" class="form-control" />
+                <span asp-validation-for="TimeToBeReturned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

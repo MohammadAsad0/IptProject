@@ -12,7 +12,7 @@
 
 <div class="table-responsive">
 
-<table class="table table-hover table-striped" style="margin-top: 20px;">
+    <table class="table table-hover table-striped" style="margin-top: 20px;">
         @if (Model.Count() == 0)
         {
             <tr>
@@ -20,50 +20,50 @@
             </tr>
         } else 
         {
-        <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Price Of Item
-            </th>
-            <th>
-                Quantity Available
-            </th>
-            <th>
-                Actions
-            </th>
-            <th>
-                Issue to Students
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PricePerItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id" asp-route-name="@item.Name" asp-route-Quantity="@item.Quantity" asp-route-PricePerItem="@item.PricePerItem">Edit</a>
-                <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-            <td>
-                <button class="btn btn-primary" asp-controller="Item" asp-action="Issue" asp-route-id="@item.Id">Issue</button>
-            </td>
-        </tr>
-}
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Price Of Item
+                    </th>
+                    <th>
+                        Quantity Available
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                    <th>
+                        Issue to Students
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PricePerItem)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id" asp-route-name="@item.Name" asp-route-Quantity="@item.Quantity" asp-route-PricePerItem="@item.PricePerItem">Edit</a>
+                            <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Item" asp-action="Issue" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Quantity="@item.Quantity" asp-route-PricePerItem="@item.PricePerItem">Issue</a>
+                        </td>
+                    </tr>
+                }
        
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
           
-    </tbody>
-    }
-</table>
+            </tbody>
+        }
+    </table>
 </div>

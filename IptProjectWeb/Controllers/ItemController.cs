@@ -89,6 +89,8 @@ namespace IptProjectWeb.Controllers
                 item.Quantity
             };
 
+            Console.WriteLine(json);
+
             var jsonItem = JsonConvert.SerializeObject(json);
 
             var data = new StringContent(jsonItem, Encoding.UTF8, "application/json");
@@ -114,9 +116,43 @@ namespace IptProjectWeb.Controllers
             return RedirectToAction("index");
         }
 
-        public IActionResult Issue(string id) 
-        { 
+        public IActionResult Issue(string Id, string Name, int Quantity, int PricePerItem) 
+        {
+            var item = new Item(Id, Name, Quantity, PricePerItem);
+
+            ViewData["Item"] = item;
             return View(); 
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Issue(BorrowedItem item, string itemId)
+        {
+            string date = DateTime.Now.ToString("MM-dd-yyyy");
+
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
+
+            var json = new
+            {
+                item.ItemId,
+                item.StudentId,
+                item.QuantityBorrowed,
+                timeBorrowed = date,
+                item.TimeToBeReturned
+            };
+
+            Console.WriteLine(json);
+
+            var jsonItem = JsonConvert.SerializeObject(json);
+
+            var data = new StringContent(jsonItem, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("addborroweditem", data);
+            response.EnsureSuccessStatusCode();
+
+            return RedirectToAction("Index");
         }
     }
 }

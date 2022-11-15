@@ -4,8 +4,6 @@ namespace IptProjectWeb.Models
 {
     public class BorrowedItem
     {
-        [Key]
-        public string Id { get; set; }
         public string ItemId { get; set; }
         public string ItemName { get; set; }
         public string StudentId { get; set; }

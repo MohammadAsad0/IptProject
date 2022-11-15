@@ -1,6 +1,8 @@
 ﻿using IptProjectWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Text;
 
 namespace IptProjectWeb.Controllers
 {
@@ -42,8 +44,52 @@ namespace IptProjectWeb.Controllers
             return View(items);
         }
 
-        public IActionResult Returned(string id)
+        public async Task<IActionResult> Returned(string ItemId, string StudentId)
         {
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
+
+            var uri = Path.Combine("deleteborroweditembyitemidandstudentid", ItemId, StudentId);
+
+            var response = await client.DeleteAsync(uri);
+            response.EnsureSuccessStatusCode();
+
+            return RedirectToAction("index");
+        }
+
+        public IActionResult Edit(string? ItemId, string ItemName, string StudentId, string StudentName, string QuantityBorrowed, string TimeBorrowed, string TimeToBeReturned)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(BorrowedItem item, string itemId, string studentId)
+
+            //TODO: SAHI KRNA HAI ISKO
+        {
+            using var client = new HttpClient();
+            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
+
+            var json = new
+            {
+                item.ItemId,
+                item.StudentId,
+                item.QuantityBorrowed,
+                item.TimeBorrowed,
+                item.TimeToBeReturned
+            };
+
+            Console.WriteLine(json);
+            var jsonItem = JsonConvert.SerializeObject(json);
+
+            var data = new StringContent(jsonItem, Encoding.UTF8, "application/json");
+
+            var uri = Path.Combine("updateborroweditembyitemidandstudentid", item.ItemId, item.StudentId);
+
+            var response = await client.PutAsync(uri, data);
+            response.EnsureSuccessStatusCode();
+
             return RedirectToAction("Index");
         }
 

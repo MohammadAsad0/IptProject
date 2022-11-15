@@ -36,10 +36,10 @@
                         Item
                     </th>
                     <th>
-                        Quantity Borrowed
+                        Quantity Issued
                     </th>
                     <th>
-                        Time Borrowed
+                        Time Issued
                     </th>
                     <th>
                         Time To Be Returned
@@ -72,7 +72,9 @@
                             @Html.DisplayFor(modelItem => item.TimeToBeReturned)
                         </td>
                         <td>
-                            <button class="btn btn-primary" asp-controller="Home" asp-action="Returned" asp-route-id="@item.Id">Mark as Returned</button>
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-ItemId="@item.ItemId" asp-route-ItemName="@item.ItemName" asp-route-StudentId="@item.StudentId" asp-route-StudentName="@item.StudentName" asp-route-QuantityBorrowed="@item.QuantityBorrowed" asp-route-TimeBorrowed="@item.TimeBorrowed" asp-route-TimeToBeReturned="@item.TimeToBeReturned">Edit</a>
+
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="Returned" asp-route-ItemId="@item.ItemId" asp-route-StudentId="@item.StudentId">Mark as Returned</a>
                         </td>
                     </tr>
                 }
