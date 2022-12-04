@@ -14,7 +14,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StudentId" class="control-label">Student ID</label>
-                <input asp-for="StudentId" class="form-control" disabled="true"/>
+                @*kuch fields empty ja rhi hain*@
+                <input asp-for="StudentId" class="form-control" disabled="true" value="@Model.ItemId"/>
 
             </div>
             <div class="form-group">
@@ -25,7 +26,7 @@
 
             <div class="form-group">
                 <label asp-for="ItemName" class="control-label">Item Name</label>
-                <input asp-for="ItemName" class="form-control" disabled="true"/>
+                <input asp-for="ItemName" class="form-control" disabled="true" value="@Model.ItemName"/>
             </div>
             
             <div class="form-group">
