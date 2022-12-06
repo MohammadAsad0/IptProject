@@ -12,33 +12,42 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="display:inline-block;width:100%;padding:8px 0;">
+                <label asp-for="ItemId" class="control-label">ItemId</label>
+                @Html.TextBoxFor(m => m.ItemId, new { @readonly="readonly" })
+                <span asp-validation-for="ItemId" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:inline-block;width:100%;padding:8px 0;">
                 <label asp-for="StudentId" class="control-label">Student ID</label>
-                @*kuch fields empty ja rhi hain*@
-                <input asp-for="StudentId" class="form-control" disabled="true" value="@Model.ItemId"/>
+                @Html.TextBoxFor(m => m.StudentId, new { @readonly="readonly" })
+                <span asp-validation-for="StudentId" class="text-danger"></span>
 
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:inline-block;width:100%;padding:8px 0;">
                 <label asp-for="StudentName" class="control-label">Student Name</label>
-                <input asp-for="StudentName" class="form-control" disabled="true" />
+                @Html.TextBoxFor(m => m.StudentName, new { @readonly="readonly" })
+                <span asp-validation-for="StudentName" class="text-danger"></span>
 
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display:inline-block;width:100%;padding:8px 0;">
                 <label asp-for="ItemName" class="control-label">Item Name</label>
-                <input asp-for="ItemName" class="form-control" disabled="true" value="@Model.ItemName"/>
+                @Html.TextBoxFor(m => m.ItemName, new { @readonly="readonly" })
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+
             </div>
-            
-            <div class="form-group">
+
+            <div class="form-group" style="display:inline-block;width:100%;padding:12px 0;">
+                <label asp-for="TimeBorrowed" class="control-label">Time Issued</label>
+                @Html.TextBoxFor(m => m.TimeBorrowed, new { @readonly="readonly" })
+                <span asp-validation-for="TimeBorrowed" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group" style="display:inline-block;width:100%;padding:12px 0;">
                 <label asp-for="QuantityBorrowed" class="control-label">Quantity Issued</label>
                 <input asp-for="QuantityBorrowed" class="form-control" />
                 <span asp-validation-for="QuantityBorrowed" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="TimeBorrowed" class="control-label">Time Issued</label>
-                <input asp-for="TimeBorrowed" class="form-control" disabled="true" />
-
             </div>
 
             <div class="form-group">
@@ -46,7 +55,7 @@
                 <input asp-for="TimeToBeReturned" class="form-control" />
                 <span asp-validation-for="TimeToBeReturned" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:inline-block;width:100%;padding:12px 0;">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

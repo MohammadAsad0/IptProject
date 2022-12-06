@@ -11,7 +11,7 @@ namespace IptProjectWeb.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/fine/");
+                client.BaseAddress = new Uri("https://localhost:7201/api/fine/");
 
                 var responseTask = client.GetAsync("getallfines");
                 responseTask.Wait();

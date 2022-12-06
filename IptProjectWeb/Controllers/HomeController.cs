@@ -21,7 +21,7 @@ namespace IptProjectWeb.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
+                client.BaseAddress = new Uri("https://localhost:7201/api/borroweditem/");
 
                 var responseTask = client.GetAsync("getallborroweditems");
                 responseTask.Wait();
@@ -47,7 +47,7 @@ namespace IptProjectWeb.Controllers
         public async Task<IActionResult> Returned(string ItemId, string StudentId)
         {
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
+            client.BaseAddress = new Uri("https://localhost:7201/api/borroweditem/");
 
             var uri = Path.Combine("deleteborroweditembyitemidandstudentid", ItemId, StudentId);
 
@@ -65,11 +65,9 @@ namespace IptProjectWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(BorrowedItem item, string itemId, string studentId)
-
-            //TODO: SAHI KRNA HAI ISKO
         {
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
+            client.BaseAddress = new Uri("https://localhost:7201/api/borroweditem/");
 
             var json = new
             {

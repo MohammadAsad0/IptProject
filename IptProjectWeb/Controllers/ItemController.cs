@@ -16,7 +16,7 @@ namespace IptProjectWeb.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/items/");
+                client.BaseAddress = new Uri("https://localhost:7201/api/items/");
 
                 var responseTask = client.GetAsync("getallItems");
                 responseTask.Wait();
@@ -49,7 +49,7 @@ namespace IptProjectWeb.Controllers
         public async Task<IActionResult> Create(Item item)
         {
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/items/");
+            client.BaseAddress = new Uri("https://localhost:7201/api/items/");
 
             var json = new
             {
@@ -80,7 +80,7 @@ namespace IptProjectWeb.Controllers
         public async Task<IActionResult> Edit(Item item)
         {
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/items/");
+            client.BaseAddress = new Uri("https://localhost:7201/api/items/");
 
             var json = new
             {
@@ -106,7 +106,7 @@ namespace IptProjectWeb.Controllers
         public async Task<IActionResult> DeleteAsync(string? id)
         {
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/items/");
+            client.BaseAddress = new Uri("https://localhost:7201/api/items/");
 
             var uri = Path.Combine("deleteitembyitemid", id);
 
@@ -132,7 +132,7 @@ namespace IptProjectWeb.Controllers
             string date = DateTime.Now.ToString("MM-dd-yyyy");
 
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://sportsequipmentapi.azurewebsites.net/api/borroweditem/");
+            client.BaseAddress = new Uri("https://localhost:7201/api/borroweditem/");
 
             var json = new
             {
